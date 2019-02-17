@@ -1,6 +1,6 @@
 {
   "name": "simple-redux-container",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A general purpose Redux container",
   "main": "dist/index.js",
   "scripts": {
