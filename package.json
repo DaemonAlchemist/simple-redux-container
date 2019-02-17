@@ -1,0 +1,62 @@
+{
+  "name": "simple-redux-container",
+  "version": "0.0.0",
+  "description": "A general purpose Redux container",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "build": "tsc",
+    "new-tag": "git push && git push origin --tags && npm publish",
+    "major": "npm version major && npm run new-tag",
+    "minor": "npm version minor && npm run new-tag",
+    "patch": "npm version patch && npm run new-tag",
+    "major-clean": "npm install && npm run major && rm -rf node_modules",
+    "minor-clean": "npm install && npm run minor && rm -rf node_modules",
+    "patch-clean": "npm install && npm run patch && rm -rf node_modules",
+    "check-dependencies": "dependency-check ./package.json && dependency-check ./package.json --unused",
+    "check": "ncu --packageFile package.json",
+    "evergreen": "ncu -ua --packageFile package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaemonAlchemist/simple-redux-container.git"
+  },
+  "keywords": [
+    "Redux",
+    "container"
+  ],
+  "author": "Andrew Wittrock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DaemonAlchemist/simple-redux-container/issues"
+  },
+  "homepage": "https://github.com/DaemonAlchemist/simple-redux-container#readme",
+  "devDependencies": {
+    "@types/history": "^4.7.2",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.8.3",
+    "@types/react-redux": "^7.0.1",
+    "@types/react-router": "^4.4.4",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.7",
+    "dependency-check": "^3.3.0",
+    "jest": "^24.1.0",
+    "npm-check-updates": "^2.15.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.1"
+  },
+  "dependencies": {
+    "atp-pointfree": "^0.11.5",
+    "connected-react-router": "^6.3.1",
+    "history": "^4.7.2",
+    "merge-deep": "^3.0.2",
+    "react": "^16.8.2",
+    "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-localstorage-simple": "^2.1.6",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}
