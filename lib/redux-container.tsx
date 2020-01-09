@@ -12,7 +12,7 @@ interface IReducerContainer {
     [id:string]:(state:any, action:any) => any;
 }
 
-export const ReduxContainer = (props:{children:any, reducers:IReducerContainer}) => {
+export const ReduxContainer = (props:{children:any, reducers:IReducerContainer, initialState?: any}) => {
     const history = createBrowserHistory();
 
     const reducers = {
@@ -22,7 +22,7 @@ export const ReduxContainer = (props:{children:any, reducers:IReducerContainer})
 
     const store = createStore(
         combineReducers(reducers),
-        load(),
+        load() || props.initialState,
         applyMiddleware(routerMiddleware(history), thunk, createLogger(), save())
     );
 
