@@ -23,7 +23,7 @@ var redux_thunk_1 = require("redux-thunk");
 exports.ReduxContainer = function (props) {
     var history = history_1.createBrowserHistory();
     var reducers = __assign({ router: connected_react_router_1.connectRouter(history) }, props.reducers);
-    var store = redux_1.createStore(redux_1.combineReducers(reducers), redux_localstorage_simple_1.load(), redux_1.applyMiddleware(connected_react_router_1.routerMiddleware(history), redux_thunk_1.default, redux_logger_1.createLogger(), redux_localstorage_simple_1.save()));
+    var store = redux_1.createStore(redux_1.combineReducers(reducers), redux_localstorage_simple_1.load() || props.initialState, redux_1.applyMiddleware(connected_react_router_1.routerMiddleware(history), redux_thunk_1.default, redux_logger_1.createLogger(), redux_localstorage_simple_1.save()));
     return (React.createElement(react_redux_1.Provider, { store: store },
         React.createElement(connected_react_router_1.ConnectedRouter, { history: history },
             React.createElement(React.Fragment, null, React.Children.map(props.children, atp_pointfree_1.identity)))));

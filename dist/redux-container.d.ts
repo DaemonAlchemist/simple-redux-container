@@ -5,5 +5,6 @@ interface IReducerContainer {
 export declare const ReduxContainer: (props: {
     children: any;
     reducers: IReducerContainer;
+    initialState?: any;
 }) => JSX.Element;
 export {};
