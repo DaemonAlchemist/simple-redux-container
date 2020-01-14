@@ -6,5 +6,6 @@ export declare const ReduxContainer: (props: {
     children: any;
     reducers: IReducerContainer;
     initialState?: any;
+    middleware?: any[] | undefined;
 }) => JSX.Element;
 export {};
