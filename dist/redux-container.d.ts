@@ -2,10 +2,13 @@
 interface IReducerContainer {
     [id: string]: (state: any, action: any) => any;
 }
-export declare const ReduxContainer: (props: {
+interface IReduxContainerProps {
     children: any;
     reducers: IReducerContainer;
     initialState?: any;
-    middleware?: any[] | undefined;
-}) => JSX.Element;
+    middleware?: any[];
+    useLocalStorage?: boolean;
+    forceReset?: boolean;
+}
+export declare const ReduxContainer: (props: IReduxContainerProps) => JSX.Element;
 export {};

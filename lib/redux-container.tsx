@@ -12,7 +12,16 @@ interface IReducerContainer {
     [id:string]:(state:any, action:any) => any;
 }
 
-export const ReduxContainer = (props:{children:any, reducers:IReducerContainer, initialState?: any, middleware?: any[]}) => {
+interface IReduxContainerProps {
+    children: any;
+    reducers:IReducerContainer;
+    initialState?:any;
+    middleware?:any[];
+    useLocalStorage?: boolean;
+    forceReset?:boolean;
+}
+
+export const ReduxContainer = (props:IReduxContainerProps) => {
     const history = createBrowserHistory();
 
     const reducers = {
@@ -20,11 +29,24 @@ export const ReduxContainer = (props:{children:any, reducers:IReducerContainer, 
         ...props.reducers
     };
 
-    const store = createStore(
-        combineReducers(reducers),
-        load() || props.initialState,
-        applyMiddleware(...[routerMiddleware(history), thunk, createLogger(), save(), ...(props.middleware || [])])
-    );
+    const useLocalStorage = typeof props.useLocalStorage === 'undefined' ? true : props.useLocalStorage;
+    const forceReset = typeof props.forceReset === 'undefined' ? false : props.forceReset;
+
+    const initialState = useLocalStorage ? (
+        forceReset ?
+            (props.initialState || load()) :
+            (load() || props.initialState)
+    ) : (props.initialState || {});
+    
+    const middleware = [
+        routerMiddleware(history),
+        thunk,
+        createLogger(),
+        ...(useLocalStorage ? [save()] : []),
+        ...(props.middleware || [])
+    ];
+
+    const store = createStore(combineReducers(reducers), initialState, applyMiddleware(...middleware));
 
     return (
         <Provider store={store}>
