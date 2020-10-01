@@ -19,6 +19,7 @@ interface IReduxContainerProps {
     middleware?:any[];
     useLocalStorage?: boolean;
     forceReset?:boolean;
+    useLogger?: boolean;
 }
 
 export const ReduxContainer = (props:IReduxContainerProps) => {
@@ -31,6 +32,7 @@ export const ReduxContainer = (props:IReduxContainerProps) => {
 
     const useLocalStorage = typeof props.useLocalStorage === 'undefined' ? true : props.useLocalStorage;
     const forceReset = typeof props.forceReset === 'undefined' ? false : props.forceReset;
+    const useLogger = typeof props.useLogger === 'undefined' ? true : props.useLogger;
 
     const initialState = useLocalStorage ? (
         forceReset ?
@@ -41,7 +43,7 @@ export const ReduxContainer = (props:IReduxContainerProps) => {
     const middleware = [
         routerMiddleware(history),
         thunk,
-        createLogger(),
+        ...(useLogger ? [createLogger()] : []),
         ...(useLocalStorage ? [save()] : []),
         ...(props.middleware || [])
     ];

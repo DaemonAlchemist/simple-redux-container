@@ -25,14 +25,14 @@ exports.ReduxContainer = function (props) {
     var reducers = __assign({ router: connected_react_router_1.connectRouter(history) }, props.reducers);
     var useLocalStorage = typeof props.useLocalStorage === 'undefined' ? true : props.useLocalStorage;
     var forceReset = typeof props.forceReset === 'undefined' ? false : props.forceReset;
+    var useLogger = typeof props.useLogger === 'undefined' ? true : props.useLogger;
     var initialState = useLocalStorage ? (forceReset ?
         (props.initialState || redux_localstorage_simple_1.load()) :
         (redux_localstorage_simple_1.load() || props.initialState)) : (props.initialState || {});
     var middleware = [
         connected_react_router_1.routerMiddleware(history),
-        redux_thunk_1.default,
-        redux_logger_1.createLogger()
-    ].concat((useLocalStorage ? [redux_localstorage_simple_1.save()] : []), (props.middleware || []));
+        redux_thunk_1.default
+    ].concat((useLogger ? [redux_logger_1.createLogger()] : []), (useLocalStorage ? [redux_localstorage_simple_1.save()] : []), (props.middleware || []));
     var store = redux_1.createStore(redux_1.combineReducers(reducers), initialState, redux_1.applyMiddleware.apply(void 0, middleware));
     return (React.createElement(react_redux_1.Provider, { store: store },
         React.createElement(connected_react_router_1.ConnectedRouter, { history: history },

@@ -9,6 +9,7 @@ interface IReduxContainerProps {
     middleware?: any[];
     useLocalStorage?: boolean;
     forceReset?: boolean;
+    useLogger?: boolean;
 }
 export declare const ReduxContainer: (props: IReduxContainerProps) => JSX.Element;
 export {};
