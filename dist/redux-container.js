@@ -10,7 +10,15 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReduxContainer = void 0;
 var atp_pointfree_1 = require("atp-pointfree");
 var connected_react_router_1 = require("connected-react-router");
 var history_1 = require("history");
@@ -29,10 +37,10 @@ exports.ReduxContainer = function (props) {
     var initialState = useLocalStorage ? (forceReset ?
         (props.initialState || redux_localstorage_simple_1.load()) :
         (redux_localstorage_simple_1.load() || props.initialState)) : (props.initialState || {});
-    var middleware = [
+    var middleware = __spreadArrays([
         connected_react_router_1.routerMiddleware(history),
         redux_thunk_1.default
-    ].concat((useLogger ? [redux_logger_1.createLogger()] : []), (useLocalStorage ? [redux_localstorage_simple_1.save()] : []), (props.middleware || []));
+    ], (useLogger ? [redux_logger_1.createLogger()] : []), (useLocalStorage ? [redux_localstorage_simple_1.save()] : []), (props.middleware || []));
     var store = redux_1.createStore(redux_1.combineReducers(reducers), initialState, redux_1.applyMiddleware.apply(void 0, middleware));
     return (React.createElement(react_redux_1.Provider, { store: store },
         React.createElement(connected_react_router_1.ConnectedRouter, { history: history },

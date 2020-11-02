@@ -49,7 +49,7 @@
   "dependencies": {
     "atp-pointfree": "^0.11.5",
     "connected-react-router": "^6.8.0",
-    "history": "^5.0.0",
+    "history": "^4.7.2",
     "merge-deep": "^3.0.2",
     "react": "^16.13.1",
     "react-redux": "^7.2.1",
