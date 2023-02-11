@@ -42,7 +42,7 @@
     "@types/redux-logger": "^3.0.8",
     "dependency-check": "^4.1.0",
     "jest": "^26.4.2",
-    "npm-check-updates": "^9.0.3",
+    "npm-check-updates": "^16.7.4",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
